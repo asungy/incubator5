@@ -1,0 +1,6 @@
+/target
+.env
+
+# Postgres files
+.data
+psqlog
