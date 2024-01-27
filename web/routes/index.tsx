@@ -1,5 +1,6 @@
 import { FreshContext } from "$fresh/server.ts";
 import Banner from "@/components/banner.tsx";
+import { gitHubApi } from "@/utils/github.ts";
 
 export async function handler(
   req: Request,
@@ -13,7 +14,13 @@ export async function handler(
     });
   }
 
-  // TODO: Continue from example
+  const accessToken = await gitHubApi.getAccessToken(code);
+  const userData = await gitHubApi.getUserData(accessToken);
+
+  console.log("accessToken : ", accessToken);
+  console.log("userData: ", userData);
+
+  return ctx.render();
 }
 
 export default function Main() {
